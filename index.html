@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Multi-Step</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span>ShopEase</span>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
+    </header>
+
+    <main class="main">
+      <!-- Progress Steps -->
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="steps">
+          <div class="step active" data-step="1">
+            <div class="step-circle">1</div>
+            <span class="step-label">Info</span>
+          </div>
+          <div class="step" data-step="2">
+            <div class="step-circle">2</div>
+            <span class="step-label">Shipping</span>
+          </div>
+          <div class="step" data-step="3">
+            <div class="step-circle">3</div>
+            <span class="step-label">Payment</span>
+          </div>
+          <div class="step" data-step="4">
+            <div class="step-circle">4</div>
+            <span class="step-label">Review</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkout-layout">
+        <!-- Form Area -->
+        <div class="form-panel">
+          <!-- Step 1: Customer Info -->
+          <section class="form-step active" id="step1" data-step="1">
+            <h2 class="step-title">Customer Information</h2>
+            <p class="step-desc">Enter your contact details so we can reach you about your order.</p>
+            <form id="form1" class="form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" name="firstName" placeholder="John" required />
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" placeholder="Doe" required />
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required />
+                <span class="error-msg"></span>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required />
+                <span class="error-msg"></span>
+              </div>
+            </form>
+          </section>
+
+          <!-- Step 2: Shipping -->
+          <section class="form-step" id="step2" data-step="2">
+            <h2 class="step-title">Shipping Address</h2>
+            <p class="step-desc">Where should we deliver your order?</p>
+            <form id="form2" class="form">
+              <div class="form-group">
+                <label for="address">Street Address</label>
+                <input type="text" id="address" name="address" placeholder="123 Main Street" required />
+                <span class="error-msg"></span>
+              </div>
+              <div class="form-group">
+                <label for="apartment">Apartment, suite, etc. (optional)</label>
+                <input type="text" id="apartment" name="apartment" placeholder="Apt 4B" />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" id="city" name="city" placeholder="New York" required />
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label for="state">State</label>
+                  <input type="text" id="state" name="state" placeholder="NY" required />
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="zip">ZIP Code</label>
+                  <input type="text" id="zip" name="zip" placeholder="10001" required />
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label for="country">Country</label>
+                  <select id="country" name="country" required>
+                    <option value="">Select country</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="IN">India</option>
+                    <option value="AU">Australia</option>
+                    <option value="DE">Germany</option>
+                  </select>
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <div class="shipping-options">
+                <p class="options-title">Shipping Method</p>
+                <label class="radio-card">
+                  <input type="radio" name="shipping" value="standard" checked />
+                  <div class="radio-content">
+                    <span class="radio-label">Standard Shipping</span>
+                    <span class="radio-desc">5–7 business days</span>
+                    <span class="radio-price">Free</span>
+                  </div>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="shipping" value="express" />
+                  <div class="radio-content">
+                    <span class="radio-label">Express Shipping</span>
+                    <span class="radio-desc">2–3 business days</span>
+                    <span class="radio-price">$12.00</span>
+                  </div>
+                </label>
+                <label class="radio-card">
+                  <input type="radio" name="shipping" value="overnight" />
+                  <div class="radio-content">
+                    <span class="radio-label">Overnight</span>
+                    <span class="radio-desc">Next business day</span>
+                    <span class="radio-price">$25.00</span>
+                  </div>
+                </label>
+              </div>
+            </form>
+          </section>
+
+          <!-- Step 3: Payment -->
+          <section class="form-step" id="step3" data-step="3">
+            <h2 class="step-title">Payment Details</h2>
+            <p class="step-desc">All transactions are secure and encrypted.</p>
+            <form id="form3" class="form">
+              <div class="payment-methods">
+                <label class="method-card active">
+                  <input type="radio" name="payMethod" value="card" checked />
+                  <span>Credit Card</span>
+                </label>
+                <label class="method-card">
+                  <input type="radio" name="payMethod" value="paypal" />
+                  <span>PayPal</span>
+                </label>
+                <label class="method-card">
+                  <input type="radio" name="payMethod" value="apple" />
+                  <span>Apple Pay</span>
+                </label>
+              </div>
+              <div id="cardFields">
+                <div class="form-group">
+                  <label for="cardName">Name on Card</label>
+                  <input type="text" id="cardName" name="cardName" placeholder="John Doe" required />
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                  <label for="cardNumber">Card Number</label>
+                  <div class="input-with-icon">
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required />
+                    <div class="card-icons">
+                      <span class="card-icon visa">VISA</span>
+                      <span class="card-icon mc">MC</span>
+                    </div>
+                  </div>
+                  <span class="error-msg"></span>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5" required />
+                    <span class="error-msg"></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4" required />
+                    <span class="error-msg"></span>
+                  </div>
+                </div>
+              </div>
+              <div id="altPayment" class="alt-payment hidden">
+                <p>You will be redirected to complete payment securely.</p>
+              </div>
+            </form>
+          </section>
+
+          <!-- Step 4: Review -->
+          <section class="form-step" id="step4" data-step="4">
+            <h2 class="step-title">Review Your Order</h2>
+            <p class="step-desc">Please confirm everything looks correct before placing your order.</p>
+            <div class="review-sections">
+              <div class="review-card">
+                <div class="review-header">
+                  <h3>Contact</h3>
+                  <button type="button" class="edit-btn" data-goto="1">Edit</button>
+                </div>
+                <div class="review-body" id="reviewContact"></div>
+              </div>
+              <div class="review-card">
+                <div class="review-header">
+                  <h3>Shipping</h3>
+                  <button type="button" class="edit-btn" data-goto="2">Edit</button>
+                </div>
+                <div class="review-body" id="reviewShipping"></div>
+              </div>
+              <div class="review-card">
+                <div class="review-header">
+                  <h3>Payment</h3>
+                  <button type="button" class="edit-btn" data-goto="3">Edit</button>
+                </div>
+                <div class="review-body" id="reviewPayment"></div>
+              </div>
+            </div>
+            <label class="checkbox-row">
+              <input type="checkbox" id="terms" required />
+              <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+            </label>
+          </section>
+
+          <!-- Success State -->
+          <section class="form-step success-step" id="stepSuccess">
+            <div class="success-content">
+              <div class="success-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <h2>Order Placed Successfully!</h2>
+              <p>Thank you for your purchase. A confirmation email has been sent to <strong id="successEmail"></strong>.</p>
+              <p class="order-id">Order ID: <span id="orderId"></span></p>
+              <button class="btn btn-primary" id="continueShopping">Continue Shopping</button>
+            </div>
+          </section>
+
+          <!-- Navigation Buttons -->
+          <div class="form-nav" id="formNav">
+            <button type="button" class="btn btn-secondary" id="prevBtn">Back</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">Continue</button>
+          </div>
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <aside class="summary-panel">
+          <h3 class="summary-title">Order Summary</h3>
+          <div class="cart-items">
+            <div class="cart-item">
+              <div class="item-image">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=120&h=120&fit=crop" alt="Product" />
+              </div>
+              <div class="item-details">
+                <p class="item-name">Premium Wireless Headphones</p>
+                <p class="item-meta">Black · Qty 1</p>
+              </div>
+              <p class="item-price">$149.00</p>
+            </div>
+            <div class="cart-item">
+              <div class="item-image">
+                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=120&h=120&fit=crop" alt="Product" />
+              </div>
+              <div class="item-details">
+                <p class="item-name">Smart Watch Series X</p>
+                <p class="item-meta">Silver · Qty 1</p>
+              </div>
+              <p class="item-price">$299.00</p>
+            </div>
+          </div>
+          <div class="summary-totals">
+            <div class="total-row">
+              <span>Subtotal</span>
+              <span>$448.00</span>
+            </div>
+            <div class="total-row">
+              <span>Shipping</span>
+              <span id="shippingCost">Free</span>
+            </div>
+            <div class="total-row">
+              <span>Tax</span>
+              <span>$35.84</span>
+            </div>
+            <div class="total-row grand">
+              <span>Total</span>
+              <span id="grandTotal">$483.84</span>
+            </div>
+          </div>
+          <div class="promo">
+            <input type="text" id="promoCode" placeholder="Promo code" />
+            <button type="button" class="btn btn-outline" id="applyPromo">Apply</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Create By Adityacse2027</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
